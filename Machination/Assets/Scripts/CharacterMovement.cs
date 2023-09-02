@@ -10,7 +10,10 @@ using UnityEngine.UIElements;
 public class PlayerScript : MonoBehaviour
 {
     public GameObject player;
-    public float movementSpeed;
+    public float moveSpeed;
+
+    //private Vector2 moveInput;
+    //private RigidBody2D rigidBody;
 
 
     void Start()
@@ -23,22 +26,32 @@ public class PlayerScript : MonoBehaviour
         // Player Left/Right Movement
         if (Input.GetKey(KeyCode.D))
         { 
-            player.transform.position += new Vector3( movementSpeed, 0, 0 ) * Time.deltaTime;
+            player.transform.position += new Vector3( moveSpeed, 0, 0 ) * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            player.transform.position += new Vector3( movementSpeed * -1.0f, 0, 0 ) * Time.deltaTime;
+            player.transform.position += new Vector3( moveSpeed * -1.0f, 0, 0 ) * Time.deltaTime;
         }
 
         // Player Up/Down Movement
         if (Input.GetKey(KeyCode.W))
         {
-            player.transform.position += new Vector3( 0, movementSpeed, 0 ) * Time.deltaTime;
+            player.transform.position += new Vector3( 0, moveSpeed, 0 ) * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            player.transform.position += new Vector3( 0, movementSpeed * -1.0f, 0 ) * Time.deltaTime;
+            player.transform.position += new Vector3( 0, moveSpeed * -1.0f, 0 ) * Time.deltaTime;
         }
 
+    }
+
+    public void FixedUpdate()
+    {
+
+    }
+
+    private bool movePlayer()
+    {
+        return true;
     }
 }
