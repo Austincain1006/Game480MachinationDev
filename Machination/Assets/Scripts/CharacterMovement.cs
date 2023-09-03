@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     public float moveSpeed;
 
     //private Vector2 moveInput;
-    //private RigidBody2D rigidBody;
+    public Rigidbody2D rb;
 
 
     void Start()
@@ -50,8 +50,8 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    private bool movePlayer()
+    private void movePlayer(Vector2 movement)
     {
-        return true;
+        
     }
 }
