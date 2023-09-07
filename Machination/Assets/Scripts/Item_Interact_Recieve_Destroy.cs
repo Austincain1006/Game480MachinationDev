@@ -3,25 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelLoadTrigger : MonoBehaviour
+public class Item_Interact_Recieve_Destroy : MonoBehaviour
 {
-    public string destination;
-    public GameObject LevelLoader;
-    private LoadNewLevel LevelLoaderFunctions;
+    public BoxCollider2D itemBounds;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        LevelLoaderFunctions = LevelLoader.GetComponent<LoadNewLevel>();
+        
     }
 
-    // Change Level on Trigger Enter
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {       
         if ( collision.tag == "Player" )
         {
-            LevelLoaderFunctions.LoadLevel( destination );
             Debug.Log("Amogus");
         }
     }
+    
 }
