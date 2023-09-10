@@ -1,0 +1,5 @@
+"Levi": "Hello there!",
+"Player": "Hi Levi, how are you?",
+"Levi": "A bit tired, it was a long way over here. There's some good land here though! Untouched and untamed wilderness!",
+"Player": "It is indeed a beautiful area. I best get going, duty calls.",
+"Levi": "Farewell."

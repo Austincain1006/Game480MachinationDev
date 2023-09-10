@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class Dialogue : MonoBehaviour
 {
@@ -35,14 +36,14 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void startDialogue()
+    public void startDialogue()
     {
         index = 0;
         StartCoroutine( typeLine() );
     }
 
     // Type out next line character by character
-    IEnumerator typeLine()
+    private IEnumerator typeLine()
     {
         foreach ( char c in lines[index].ToCharArray() )
         {
@@ -51,7 +52,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void nextLine()
+    private void nextLine()
     {
         if ( index < lines.Length - 1 ) {
             index++;
