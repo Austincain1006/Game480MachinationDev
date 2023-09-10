@@ -34,7 +34,9 @@ public class PlayerScript : MonoBehaviour
 		rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 	}
 
-	// Set Movement Vector from Player Input
+	/// <summary>
+	/// Set Movement Vector from Player Input
+	/// </summary>
 	private void movePlayer(float h, float v)
 	{
 		movement = Vector2.ClampMagnitude(new Vector2(h, v), 1);
