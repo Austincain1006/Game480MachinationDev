@@ -2,20 +2,46 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public CollectionRange collectionRange;
+    [SerializeField] private float itemCollectionDistance = 1.5f;
+    private bool _hovering;
+    private GameObject _player;
 
-    // Start is called before the first frame update
     private void Start()
     {
+        _player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     private void Update()
     {
+        if (_hovering)
+            if (Input.GetMouseButton(0))
+            {
+                var inv = _player.GetComponent<Inventory>();
+                inv.CollectResource(Inventory.Resource.Wood);
+                Destroy(gameObject);
+            }
     }
 
     private void OnMouseEnter()
     {
-        if (collectionRange.playerInRange) Debug.Log("Mouse enter, in range");
+        var distanceToPlayer = Vector3.Distance(_player.transform.position, transform.position);
+        if (distanceToPlayer <= itemCollectionDistance) Hover();
+    }
+
+    private void OnMouseExit()
+    {
+        Unhover();
+    }
+
+    private void Hover()
+    {
+        _hovering = true;
+        GetComponent<SpriteRenderer>().color = Color.green;
+    }
+
+    private void Unhover()
+    {
+        _hovering = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
