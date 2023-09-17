@@ -5,19 +5,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using System.IO.IsolatedStorage;
+using System.Linq;
 
 public class Dialogue : MonoBehaviour
 {
-    public TextMeshProUGUI textComponent;
-    public string[] lines;
-    public float textSpeed;
+    [SerializeField] TextMeshProUGUI dialogTextDisplay;
+    [SerializeField] TextMeshProUGUI nameTextDisplay;
+    [SerializeField] float textSpeed;
+    private string[] lines;
+    private string[] names;
     private int index;
 
     // Start is called before the first frame update
     void Start()
     {
-        textComponent.text = string.Empty;
-        startDialogue();
+        // Debug.Log(textFile.text);
+        dialogTextDisplay.text = string.Empty;
+        nameTextDisplay.text = string.Empty;
     }
 
     // Update is called once per frame
@@ -26,18 +31,20 @@ public class Dialogue : MonoBehaviour
         // Allow player to skip typing animation through input
         if ( Input.GetMouseButtonDown(0) )
         {
-            if ( textComponent.text == lines[index])
+            if ( dialogTextDisplay.text == lines[index])
             {
                 nextLine();
             } else {
                 StopAllCoroutines();
-                textComponent.text = lines[index];
+                dialogTextDisplay.text = lines[index];
             }
         }
     }
 
-    public void startDialogue()
+    public void startDialogue(TextAsset dialog)
     {
+        this.gameObject.SetActive(true);
+        loadDialog(dialog);
         index = 0;
         StartCoroutine( typeLine() );
     }
@@ -45,9 +52,10 @@ public class Dialogue : MonoBehaviour
     // Type out next line character by character
     private IEnumerator typeLine()
     {
+        nameTextDisplay.text = names[index];
         foreach ( char c in lines[index].ToCharArray() )
         {
-            textComponent.text += c;
+            dialogTextDisplay.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
@@ -56,10 +64,31 @@ public class Dialogue : MonoBehaviour
     {
         if ( index < lines.Length - 1 ) {
             index++;
-            textComponent.text = string.Empty;
+            dialogTextDisplay.text = string.Empty;
+            nameTextDisplay.text = string.Empty;
             StartCoroutine( typeLine() );
         } else {
+            index = 0;
             gameObject.SetActive( false );
+        }
+
+    }
+
+    // Initialize Lines Array from File
+    private void loadDialog(TextAsset inFile)
+    {
+        // Split Dialog File by Line Breaks
+        lines = inFile.text.Split(new char[] { '\r', '\n' }, 
+            System.StringSplitOptions.RemoveEmptyEntries);
+        names = new string[lines.Length];
+
+        // Separate Lines and Names
+        int i = 0;
+        foreach ( string s in lines)
+        {
+            names[i] = s.Split(":").First();
+            lines[i] = s.Split(":").Last();
+            i++;
         }
 
     }

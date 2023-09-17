@@ -1,0 +1,7 @@
+Levi : Greetings!
+Player : Hello Levi, how are you?
+Levi : Tired and sore, it was harder than I had thought moving over here.
+Player : Any problems setting up your tailoring equipment?
+Levi : Everything would be fine if I had some ale. How could we have forgotten to pack some?
+Player : I think we did pack some ale, I can look inside the wagons for you.
+Levi : I would appreciate it, you are a kind sir!

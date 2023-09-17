@@ -5,12 +5,13 @@ using UnityEngine;
 public class LeviStartDialogue : MonoBehaviour
 {
 
-    public GameObject dialogue;
+    [SerializeField] Dialogue dialogueObject;
+    [SerializeField] TextAsset leviDialog;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        leviDialog = Resources.Load("LeviDialog1") as TextAsset;
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class LeviStartDialogue : MonoBehaviour
         if ( collision.tag == "Player" )
         {
             Debug.Log("HI LEVI!");
-            dialogue.SetActive( true );
+            dialogueObject.startDialogue(leviDialog);
         }
     }
 }
