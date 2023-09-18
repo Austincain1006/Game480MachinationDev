@@ -21,6 +21,7 @@ public class LevelLoadTrigger : MonoBehaviour
         if ( collision.tag == "Player" )
         {
             LevelLoaderFunctions.LoadLevel( destination );
+            Debug.Log("Amogus");
         }
     }
 }
