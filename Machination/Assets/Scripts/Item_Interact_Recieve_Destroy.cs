@@ -86,6 +86,9 @@ public class Item_Interact_Recieve_Destroy : MonoBehaviour
         }
     }
 
+    private void treeGame(){
+        
+    }
     //Maybe make new function for tree properties after it's been destroyed
     
 }
